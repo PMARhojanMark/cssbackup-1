@@ -47,9 +47,9 @@ if(!isset($_SESSION['user_name'])){
                     <i class="uil uil-arrow-right rotate"></i>
                     <ul class="sublink"></li>
                         <li><a href="file_maintenance/cadets/cadets.php">Cadets</a></li>
-                        <li><a href="file_maintenance/department/department.php">Department</a></li>
+                        <li><a href="file_maintenance/department.php">Department</a></li>
                         <li><a href="file_maintenance/faculty/faculty.php">Faculty</a></li>
-                        <li><a href="file_maintenance/course/course.php">Course</a></li>
+                        <li><a href="file_maintenance/course.php">Course</a></li>
                     </ul>
                 </li>
                 <li class="main-link">

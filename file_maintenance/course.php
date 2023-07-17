@@ -18,11 +18,12 @@ if(!isset($_SESSION['user_name'])){
     
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="css/style1.css">
-    <link rel="stylesheet" href="css/style5.css">
+    <link rel="stylesheet" href="css/style4.css">
 
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <title>Department</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>CIS Admin Dashboard</title>
 </head>
 <body>
     <nav>
@@ -45,10 +46,10 @@ if(!isset($_SESSION['user_name'])){
                     File Maintenance
                     <i class="uil uil-arrow-right rotate"></i>
                     <ul class="sublink"></li>
-                        <li><a href="file_maintenance/cadets/cadets.php">Cadets</a></li>
-                        <li><a href="file_maintenance/department/department.php">Department</a></li>
-                        <li><a href="/cssbackup/file_maintenance/faculty/faculty.php">Faculty</a></li>
-                        <li><a href="file_maintenance/course/course.php">Course</a></li>
+                        <li><a href="cadets.php">Cadets</a></li>
+                        <li><a href="department.php">Department</a></li>
+                        <li><a href="faculty.php">Faculty</a></li>
+                        <li><a href="course.php">Course</a></li>
                     </ul>
                 </li>
                 <li class="main-link">
@@ -122,7 +123,7 @@ if(!isset($_SESSION['user_name'])){
                     
 
 <?php include('message.php'); ?>
-<?php include('deptconfig.php'); ?>
+<?php include('courseconfig.php'); ?>
 
 <div class="row">
     <div class="col-md-12">
@@ -130,8 +131,8 @@ if(!isset($_SESSION['user_name'])){
             <div class="card-header">
                 <h4>
                     <i class="uil uil-briefcase-alt deplogo"></i>
-                    <span class="text">Department</span>
-                    <a href="dept-create.php" class="btn btn-primary float-end">Add Department</a>
+                    <span class="text">Course</span>
+                    <a href="course-create.php" class="btn btn-primary float-end">Add Course</a>
                 </h4>
             </div>
             <div class="card-body">
@@ -139,33 +140,43 @@ if(!isset($_SESSION['user_name'])){
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th class = "td">DEPTCODE</th>
-                            <th class = "td">DEPTNAME</th>
-                            <th class = "td">DEPTHEAD</th>
-                            <th class = "td">DEPTGROUP</th>
+                            <th class = "td">CCODE</th>
+                            <th class = "td">CEQUI</th>
+                            <th class = "td">CNAME</th>
+                            <th class = "td">CDESC</th>
+                            <th class = "td">CUNITS</th>
+                            <th class = "td">CTYPE</th>
+                            <th class = "td">CADD</th>
+                            <th class = "td">CADD2</th>
+                            <th class = "td">CTYPEOLD</th>
                             <th class = "td"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php 
-                            $query = "SELECT * FROM department";
+                            $query = "SELECT * FROM courses";
                             $query_run = mysqli_query($conn, $query);
 
                             if(mysqli_num_rows($query_run) > 0)
                             {
-                                foreach($query_run as $dept)
+                                foreach($query_run as $course)
                                 {
                                     ?>
                                     <tr>
-                                        <td><?= $dept['deptcode']; ?></td>
-                                        <td><?= $dept['deptname']; ?></td>
-                                        <td><?= $dept['depthead']; ?></td>
-                                        <td><?= $dept['deptgroup']; ?></td>
+                                        <td><?= $course['ccode']; ?></td>
+                                        <td><?= $course['cequi']; ?></td>
+                                        <td><?= $course['cname']; ?></td>
+                                        <td><?= $course['cdesc']; ?></td>
+                                        <td><?= $course['cunits']; ?></td>
+                                        <td><?= $course['ctype']; ?></td>
+                                        <td><?= $course['cadd']; ?></td>
+                                        <td><?= $course['cadd2']; ?></td>
+                                        <td><?= $course['ctypeold']; ?></td>
                                         <td>
-                                            <a href="dept-view.php?department_id=<?= $dept['department_id']; ?>" class="btn btn-info btn-sm">View</a>
-                                            <a href="dept-edit.php?department_id=<?= $dept['department_id']; ?>" class="btn btn-success btn-sm">Edit</a>
-                                            <form action="department.php" method="POST" class="d-inline">
-                                                <button type="submit" name="delete_student" value="<?=$dept['department_id'];?>" class="btn btn-danger btn-sm">Withdraw</button>
+                                            <a href="course-view.php?course_id=<?= $course['course_id']; ?>" class="btn btn-info btn-sm">View</a>
+                                            <a href="course-edit.php?course_id=<?= $course['course_id']; ?>" class="btn btn-success btn-sm">Edit</a>
+                                            <form action="course.php" method="POST" class="d-inline">
+                                                <button type="submit" name="delete_student" value="<?=$course['course_id'];?>" class="btn btn-danger btn-sm">Withdraw</button>
                                             </form>
                                         </td>
                                     </tr>
